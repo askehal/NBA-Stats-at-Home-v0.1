@@ -340,12 +340,13 @@ def pushSeasonTotal(year):
    df['season_id'] = year
 
    # Establish connection url for create engine to_sql and create psycopg2 connection for executing SQL queries
-   url = "postgresql+psycopg2://postgres:00000000@nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com:5432/postgres"
+   # Enter your DB information below
+   url = ""
    conn = psycopg2.connect(
-    dbname = 'postgres',
-    user = 'postgres',
-    password = '00000000',
-    host = 'nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com',
+    dbname = '',
+    user = '',
+    password = '',
+    host = '',
     port =5432
    )
    conn.autocommit = True
@@ -405,15 +406,17 @@ def dateRangetoList(start_date_str, end_date_str):
 
 # Push boxScore DataFrame to the game_logs SQL table
 def pushBigBoxScore(boxScore):
-  url = "postgresql+psycopg2://postgres:00000000@nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com:5432/postgres"
+  # Enter your DB information below
+  url = ""
   conn = create_engine(url, pool_pre_ping=True)
   conn.autocommit = True
 
+  # Enter your DB information below
   connpg = psycopg2.connect(
-    dbname = 'postgres',
-    user = 'postgres',
-    password = '00000000',
-    host = 'nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com',
+    dbname = '',
+    user = '',
+    password = '',
+    host = '',
     port =5432
   )
   connpg.autocommit = True
@@ -471,16 +474,18 @@ def pushBigBoxScore(boxScore):
 
 # Push game_basic DataFrame to the games SQL table
 def pushBasicBoxScore(basic):
-  url = "postgresql+psycopg2://postgres:00000000@nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com:5432/postgres"
+  # Enter your DB information below
+  url = ""
   conn = create_engine(url, pool_pre_ping=True)
   conn.autocommit = True
 
+  # Enter your DB information below
   connpg = psycopg2.connect(
-    dbname = 'postgres',
-    user = 'postgres',
-    password = '00000000',
-    host = 'nbastats.cjywao2comaq.us-west-1.rds.amazonaws.com',
-    port =5432
+    dbname = '',
+    user = '',
+    password = '',
+    host = '',
+    port = 5432
   )
   cur = connpg.cursor()
 
