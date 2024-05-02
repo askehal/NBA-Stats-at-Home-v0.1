@@ -1,0 +1,150 @@
+﻿-- public.games definition
+
+
+-- Drop table
+
+
+-- DROP TABLE public.games;
+
+
+CREATE TABLE public.games (
+        game_id int8 NOT NULL,
+        team_id_home varchar NULL,
+        team_id_away varchar NULL,
+        team_id_winner varchar NULL,
+        team_id_loser varchar NULL,
+        season_id int4 NULL,
+        game_date date NULL,
+        game_type varchar NULL,
+        home_score int4 NULL,
+        away_score int4 NULL,
+        CONSTRAINT games_pkey PRIMARY KEY (game_id)
+);
+
+
+
+
+-- public.players definition
+
+
+-- Drop table
+
+
+-- DROP TABLE public.players;
+
+
+CREATE TABLE public.players (
+        player_id int4 NOT NULL,
+        player_name varchar NULL,
+        CONSTRAINT players_pkey PRIMARY KEY (player_id)
+);
+
+
+
+
+-- public.teams definition
+
+
+-- Drop table
+
+
+-- DROP TABLE public.teams;
+
+
+CREATE TABLE public.teams (
+        team_id varchar NOT NULL,
+        team_name varchar NULL,
+        city varchar NULL,
+        CONSTRAINT teams_pkey PRIMARY KEY (team_id)
+);
+
+
+
+
+-- public.game_logs definition
+
+
+-- Drop table
+
+
+-- DROP TABLE public.game_logs;
+
+
+CREATE TABLE public.game_logs (
+        player_game_id varchar NOT NULL,
+        player_id int4 NULL,
+        game_id int8 NULL,
+        team_id varchar NULL,
+        season_id int4 NULL,
+        wl varchar NULL,
+        fgm int4 NULL,
+        fga int4 NULL,
+        fg_pct float8 NULL,
+        fg3m int4 NULL,
+        fg3a int4 NULL,
+        fg3_pct float8 NULL,
+        ftm int4 NULL,
+        fta int4 NULL,
+        ft_pct float8 NULL,
+        oreb int4 NULL,
+        dreb int4 NULL,
+        reb int4 NULL,
+        ast int4 NULL,
+        tov int4 NULL,
+        stl int4 NULL,
+        blk int4 NULL,
+        pf int4 NULL,
+        pts int4 NULL,
+        plus_minus int4 NULL,
+        dd2 int4 NULL,
+        td3 int4 NULL,
+        player_name varchar NULL,
+        game_type varchar NULL,
+        game_date date NULL,
+        min time NOT NULL,
+        CONSTRAINT game_logs_pkey PRIMARY KEY (player_game_id),
+        CONSTRAINT game_logs_game_id_fkey FOREIGN KEY (game_id) REFERENCES public.games(game_id),
+        CONSTRAINT game_logs_player_id_fkey FOREIGN KEY (player_id) REFERENCES public.players(player_id),
+        CONSTRAINT game_logs_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(team_id)
+);
+
+
+
+
+-- public.season_totals definition
+
+
+-- Drop table
+
+
+-- DROP TABLE public.season_totals;
+
+
+CREATE TABLE public.season_totals (
+        player_id int4 NULL,
+        season_id int4 NULL,
+        team_id varchar NULL,
+        age int4 NULL,
+        gp int4 NULL,
+        min int4 NULL,
+        fgm int4 NULL,
+        fga int4 NULL,
+        fg_pct float8 NULL,
+        fg3m int4 NULL,
+        fg3a int4 NULL,
+        fg3_pct float8 NULL,
+        ftm int4 NULL,
+        fta int4 NULL,
+        ft_pct float8 NULL,
+        oreb int4 NULL,
+        dreb int4 NULL,
+        reb int4 NULL,
+        ast int4 NULL,
+        tov int4 NULL,
+        stl int4 NULL,
+        blk int4 NULL,
+        pf int4 NULL,
+        pts int4 NULL,
+        player_name varchar NULL,
+        CONSTRAINT season_totals_player_id_fkey FOREIGN KEY (player_id) REFERENCES public.players(player_id)
+);
